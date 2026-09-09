@@ -1,0 +1,15 @@
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        count = {}
+        maxf = 0
+        l=0
+        res = 0
+        for i in range(len(s)):
+            count[s[i]] = 1+ count.get(s[i],0)   
+            maxf = max(maxf,count[s[i]])
+            while (i-l-maxf+1)>k:
+                count[s[l]]-=1
+                l+=1
+            res = max(maxf,i-l+1)
+
+        return res
